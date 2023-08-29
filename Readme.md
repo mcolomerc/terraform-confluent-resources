@@ -1,5 +1,11 @@
 # Manage Confluent Cloud cluster resources 
 
+Manage:
+
+- Service accounts 
+- Topics 
+- Role bindings 
+
 ## Topics
 
 ```hcl 
