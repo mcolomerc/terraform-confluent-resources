@@ -54,6 +54,47 @@ service_accounts = [
   },
 ````
 
---> Private Netowking
+## Private Networking
 
 Requires access to the data plane. 
+
+Check resources managed by Terraform: 
+
+* Role Bindings: 
+
+CloudClusterAdmin:
+
+```
+confluent iam rbac role-binding list --role CloudClusterAdmin --current-environment --cloud-cluster lkc-0j2yjp
+
+    Principal    |      Name      | Email  
+-----------------+----------------+--------
+  User:sa-wj31pw | mcolomer-admin |        
+```
+
+* Cluster API KEYS: 
+
+```
+confluent api-key list --resource lkc-0j2yjp 
+
+  Current |       Key        |          Description           |   Owner   |    Owner Email    | Resource Type |  Resource  |       Created         
+----------+------------------+--------------------------------+-----------+-------------------+---------------+------------+-----------------------
+          | 7NSEKBOHPXAR7FGK | Kafka API Key that is owned by | sa-kxmkz2 | <service account> | kafka         | lkc-0j2yjp | 2023-08-29T14:04:02Z  
+          |                  | mcolomer-dev1 service account  |           |                   |               |            |                       
+          | JJECG2AWA52RHI2I | Kafka API Key that is owned by | sa-56xqnn | <service account> | kafka         | lkc-0j2yjp | 2023-08-29T14:04:02Z  
+          |                  | mcolomer-dev2 service account  |           |                   |               |            |                       
+          | TD6NUB7RVNAZQJYB | Kafka API Key that is owned by | sa-wj31pw | <service account> | kafka         | lkc-0j2yjp | 2023-08-29T14:04:02Z  
+          |                  | mcolomer-admin service account |           |                   |               |            |                       
+```
+
+
+* Topics 
+
+```
+confluent kafka topic list
+
+   Name    
+-----------
+  topic-3  
+  topic-6  
+```
