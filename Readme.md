@@ -3,8 +3,9 @@
 Manage:
 
 - Service accounts 
+- Cluster Keys and Role bindings 
 - Topics 
-- Role bindings 
+
 
 ## Topics
 
@@ -33,7 +34,7 @@ clusters = [
 ]
 ```
 
-## RBAC 
+## Role bindings
 
 ```hcl
 # Service accounts 
@@ -58,15 +59,18 @@ service_accounts = [
         ]
     }]
   },
-````
+```
 
 ## Private Networking
 
-Requires access to the data plane. 
+Requires access to the data plane, network access for all the clusters.
 
+## Validate
+
+ 
 Check resources managed by Terraform: 
 
-* Role Bindings: 
+- Role Bindings: 
 
 CloudClusterAdmin:
 

@@ -8,14 +8,14 @@ clusters = [
     cluster_admin_sa = "mcolomer-admin"  # Create ClusterAdmin role binding for this service account
     topics = [
       {
-        name       = "topic-3"
+        name       = "topic-1-1"
         partitions = 3
         config = {
           "delete.retention.ms" = "86400000"
         }
       },
       {
-        name       = "topic-6"
+        name       = "topic-1-2"
         partitions = 6
         config = {
           "cleanup.policy"      = "delete"
@@ -23,10 +23,22 @@ clusters = [
         }
       }
     ]
+  }, { 
+    id = "lkc-0jzjk5"
+    cluster_admin_sa = "mcolomer-admin"  # Create ClusterAdmin role binding for this service account
+    topics = [
+      {
+        name       = "topic-2-1"
+        partitions = 3
+        config = {
+          "delete.retention.ms" = "86400000"
+        }
+      } 
+    ]
   }
 ] 
 
-# Service accounts 
+# Service accounts and role bindings
 service_accounts = [
   {
     name        = "mcolomer-dev1"
@@ -37,13 +49,23 @@ service_accounts = [
         {
           role     = "DeveloperRead"
           resource = "topic"
-          name     = "topic-3"
+          name     = "topic-1-1"
         },
         {
           role     = "DeveloperWrite"
           resource = "topic"
-          name     = "topic-6"
+          name     = "topic-1-2"
         }
+      ]
+    },
+    { 
+      cluster     = "lkc-0jzjk5"
+      sa_role_bindings = [
+        {
+          role     = "DeveloperRead"
+          resource = "topic"
+          name     = "topic-2-1"
+        } 
       ]
     }]
   },
@@ -56,8 +78,18 @@ service_accounts = [
         {
           role     = "DeveloperRead"
           resource = "topic"
-          name     = "topic-6"
+          name     = "topic-1-1"
         }
+      ]
+    },
+    { 
+      cluster     = "lkc-0jzjk5"
+      sa_role_bindings = [
+        {
+          role     = "DeveloperWrite"
+          resource = "topic"
+          name     = "topic-2-1"
+        } 
       ]
     }]
   }
