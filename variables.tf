@@ -28,9 +28,7 @@ variable "service_accounts" {
       })) 
     }))
   }))
-}
-
-
+} 
 
 
 # Cluster List - Resources
@@ -46,3 +44,28 @@ variable "clusters" {
   }))
 }
 
+variable "networks" {
+    type = list(string)
+}
+
+# Confluent Cloud Kafka clusters to link
+variable "links" {
+  type = list(object({
+    name     = string
+    cluster_1 = object({
+      id            = string
+      bootstrap_endpoint = string
+      rest_endpoint = string
+      service_account = string
+      mirrors = list(string)
+    })
+    cluster_2 = object({
+      id            = string
+      bootstrap_endpoint = string
+      rest_endpoint = string
+      service_account = string
+      mirrors = list(string)
+    })
+    })
+  )
+}

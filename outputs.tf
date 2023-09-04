@@ -2,9 +2,9 @@ output "service_accounts_map" {
     value = local.service_accounts_map
 }
 
-output "create_service_accounts" {
+/* output "create_service_accounts" {
   value = values(module.create_service_accounts).*.service_account 
-} 
+} */
 
 output "rolebindings" {
     value = values(module.service_accounts).*.service_account_kafka_role_bindings  
@@ -31,4 +31,8 @@ output "apps_service_accounts_set" {
 output "local_service_accounts_" {
   value = local.service_accounts
 }
- 
+
+output "links" {
+  value = local.links
+  sensitive = true
+}
