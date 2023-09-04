@@ -31,7 +31,7 @@ variable "service_accounts" {
 } 
 
 
-# Cluster List - Resources
+# Topics by Cluster - Resources
 variable "clusters" {
   type = list(object({
     id            = string
